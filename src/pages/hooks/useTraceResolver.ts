@@ -33,7 +33,11 @@ const normalizeTracePath = (value?: string) =>
 const normalizeTraceablePath = (value?: string): string => {
   const normalized = normalizeTracePath(value);
   if (!normalized || normalized === '/') return normalized;
-  return normalized.replace(/\/+$/, '');
+  const trimmed = normalized.replace(/\/+$/, '');
+  // Strip "/api/provider/{providerName}" prefix so that paths like
+  // "/api/provider/anthropic/v1/messages" are normalised to "/v1/messages".
+  const providerPrefixMatch = trimmed.match(/^\/api\/provider\/[^/]+(\/.*)/);
+  return providerPrefixMatch ? providerPrefixMatch[1] : trimmed;
 };
 
 export const isTraceableRequestPath = (value?: string): boolean => {
