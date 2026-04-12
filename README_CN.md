@@ -1,10 +1,13 @@
 # CLI Proxy API 管理中心
 
+这是 **CLIProxyAPIPlus** 的管理面板，基于原版 [CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI) 的管理面板 fork 而来，并新增了 **Kiro** 和 **GitHub Copilot** 的配额显示。
+
 用于管理与故障排查 **CLI Proxy API** 的单文件 Web UI（React + TypeScript），通过 **Management API** 完成配置、凭据、日志与统计等管理操作。
 
 [English](README.md)
 
-**主项目**: https://github.com/router-for-me/CLIProxyAPI  
+**CLIProxyAPIPlus**: https://github.com/router-for-me/CLIProxyAPIPlus  
+**上游项目**: https://github.com/router-for-me/CLIProxyAPI  
 **示例地址**: https://remote.router-for.me/  
 **最低版本要求**: ≥ 6.8.0（推荐 ≥ 6.8.15）
 
@@ -46,6 +49,15 @@ npm run build
 - 本地预览：`npm run preview`
 
 提示：直接用 `file://` 打开 `dist/index.html` 可能遇到浏览器 CORS 限制；更稳妥的方式是用预览/静态服务器打开。
+
+## 使用方法
+
+在 `config.yaml` 中配置面板地址：
+
+```yaml
+remote-management:
+  panel-github-repository: https://github.com/burugo/Cli-Proxy-API-Management-Center
+```
 
 ## 连接说明
 

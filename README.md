@@ -1,10 +1,13 @@
+> This repository is the management panel for **CLIProxyAPIPlus**, forked from the original [CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI) management panel. It adds quota displays for **Kiro** and **GitHub Copilot**.
+
 # CLI Proxy API Management Center
 
 A single-file Web UI (React + TypeScript) for operating and troubleshooting the **CLI Proxy API** via its **Management API** (config, credentials, logs, and usage).
 
 [中文文档](README_CN.md)
 
-**Main Project**: https://github.com/router-for-me/CLIProxyAPI  
+**CLIProxyAPIPlus**: https://github.com/router-for-me/CLIProxyAPIPlus  
+**Upstream Project**: https://github.com/router-for-me/CLIProxyAPI  
 **Example URL**: https://remote.router-for.me/  
 **Minimum Required Version**: ≥ 6.8.0 (recommended ≥ 6.8.15)
 
@@ -46,6 +49,15 @@ npm run build
 - To preview locally: `npm run preview`
 
 Tip: opening `dist/index.html` via `file://` may be blocked by browser CORS; serving it (preview/static server) is more reliable.
+
+## How to use
+
+Configure the panel in `config.yaml`:
+
+```yaml
+remote-management:
+  panel-github-repository: https://github.com/burugo/Cli-Proxy-API-Management-Center
+```
 
 ## Connecting to the server
 
