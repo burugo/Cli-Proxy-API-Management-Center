@@ -723,6 +723,15 @@ export function VisualConfigEditor({
                   onChange={(e) => onChange({ rmPanelRepo: e.target.value })}
                   disabled={disabled}
                 />
+                <Input
+                  label={t('config_management.visual.sections.remote.usage_statistics_url')}
+                  placeholder={t(
+                    'config_management.visual.sections.remote.usage_statistics_url_placeholder'
+                  )}
+                  value={values.rmUsageStatisticsUrl ?? ''}
+                  onChange={(e) => onChange({ rmUsageStatisticsUrl: e.target.value })}
+                  disabled={disabled}
+                />
               </SectionGrid>
             </SectionStack>
           </ConfigSection>
@@ -788,13 +797,6 @@ export function VisualConfigEditor({
                   checked={values.loggingToFile}
                   disabled={disabled}
                   onChange={(loggingToFile) => onChange({ loggingToFile })}
-                />
-                <ToggleRow
-                  title={t('config_management.visual.sections.system.usage_statistics')}
-                  description={t('config_management.visual.sections.system.usage_statistics_desc')}
-                  checked={values.usageStatisticsEnabled}
-                  disabled={disabled}
-                  onChange={(usageStatisticsEnabled) => onChange({ usageStatisticsEnabled })}
                 />
               </SectionGrid>
 

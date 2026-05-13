@@ -91,7 +91,7 @@ import {
   isCopilotFile,
   isRuntimeOnlyAuthFile,
 } from '@/utils/quota';
-import { normalizeAuthIndex } from '@/utils/usage';
+import { normalizeAuthIndex } from '@/utils/authIndex';
 import type { QuotaRenderHelpers } from './QuotaCard';
 import styles from '@/pages/QuotaPage.module.scss';
 
@@ -437,14 +437,13 @@ const fetchCodexQuota = async (
 
   const planTypeFromFile = resolveCodexPlanType(file);
   const accountId = resolveCodexChatgptAccountId(file);
-  if (!accountId) {
-    throw new Error(t('codex_quota.missing_account_id'));
-  }
 
   const requestHeader: Record<string, string> = {
     ...CODEX_REQUEST_HEADERS,
-    'Chatgpt-Account-Id': accountId,
   };
+  if (accountId) {
+    requestHeader['Chatgpt-Account-Id'] = accountId;
+  }
 
   const result = await apiCallApi.request({
     authIndex,

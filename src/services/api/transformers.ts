@@ -254,6 +254,8 @@ const normalizeOpenAIProvider = (provider: unknown): OpenAIProviderConfig | null
     apiKeyEntries
   };
 
+  const disabled = normalizeBoolean(provider.disabled ?? provider['disabled']);
+  if (disabled !== undefined) result.disabled = disabled;
   const prefix = normalizePrefix(provider.prefix ?? provider['prefix']);
   if (prefix) result.prefix = prefix;
   if (headers) result.headers = headers;
@@ -398,9 +400,6 @@ export const normalizeConfigResponse = (raw: unknown): Config => {
     };
   }
 
-  config.usageStatisticsEnabled = normalizeBoolean(
-    raw['usage-statistics-enabled'] ?? raw.usageStatisticsEnabled
-  );
   config.requestLog = normalizeBoolean(raw['request-log'] ?? raw.requestLog);
   config.loggingToFile = normalizeBoolean(raw['logging-to-file'] ?? raw.loggingToFile);
   const logsMaxTotalSizeMb = raw['logs-max-total-size-mb'] ?? raw.logsMaxTotalSizeMb;
@@ -414,6 +413,13 @@ export const normalizeConfigResponse = (raw: unknown): Config => {
   }
   config.wsAuth = normalizeBoolean(raw['ws-auth'] ?? raw.wsAuth);
   config.forceModelPrefix = normalizeBoolean(raw['force-model-prefix'] ?? raw.forceModelPrefix);
+  const usageStatisticsUrl = raw['usage-statistics-url'] ?? raw.usageStatisticsUrl;
+  if (usageStatisticsUrl !== undefined && usageStatisticsUrl !== null) {
+    const trimmed = String(usageStatisticsUrl).trim();
+    if (trimmed) {
+      config.usageStatisticsUrl = trimmed;
+    }
+  }
   const routing = raw.routing;
   const strategyRaw = isRecord(routing)
     ? (routing.strategy ?? routing['strategy'])

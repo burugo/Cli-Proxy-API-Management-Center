@@ -76,6 +76,12 @@ const headerIcons = {
       <path d="M4 17h16" />
     </svg>
   ),
+  close: (
+    <svg {...headerIconProps}>
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  ),
   chevronLeft: (
     <svg {...headerIconProps}>
       <path d="m14 18-6-6 6-6" />
@@ -230,6 +236,7 @@ export function MainLayout() {
   const fullBrandName = 'CLI Proxy API Management Center';
   const abbrBrandName = t('title.abbr');
   const isLogsPage = location.pathname.startsWith('/logs');
+  const usageStatisticsUrl = config?.usageStatisticsUrl?.trim() ?? '';
   const showSidebarLabels = !sidebarCollapsed || sidebarOpen;
 
   // 将顶部悬浮控制区高度写入 CSS 变量，供移动端粘性元素和浮层避让。
@@ -387,7 +394,9 @@ export function MainLayout() {
     { path: '/auth-files', label: t('nav.auth_files'), icon: sidebarIcons.authFiles },
     { path: '/oauth', label: t('nav.oauth', { defaultValue: 'OAuth' }), icon: sidebarIcons.oauth },
     { path: '/quota', label: t('nav.quota_management'), icon: sidebarIcons.quota },
-    { path: '/usage', label: t('nav.usage_stats'), icon: sidebarIcons.usage },
+    ...(usageStatisticsUrl
+      ? [{ path: '/usage', label: t('nav.usage_statistics'), icon: sidebarIcons.usage }]
+      : []),
     ...(config?.loggingToFile
       ? [{ path: '/logs', label: t('nav.logs'), icon: sidebarIcons.logs }]
       : []),
@@ -468,6 +477,9 @@ export function MainLayout() {
     }
     showNotification(t('notification.data_refreshed'), 'success');
   };
+  const mobileSidebarToggleLabel = sidebarOpen
+    ? t('sidebar.toggle_collapse', { defaultValue: 'Close navigation' })
+    : t('sidebar.toggle_expand', { defaultValue: 'Open navigation' });
 
   return (
     <div className={`app-shell ${sidebarCollapsed ? 'sidebar-is-collapsed' : ''}`}>
@@ -492,17 +504,20 @@ export function MainLayout() {
           {sidebarCollapsed ? headerIcons.chevronRight : headerIcons.chevronLeft}
         </button>
 
-        <div className="header-actions floating-actions">
+        <div className="mobile-sidebar-actions">
           <Button
             className="mobile-menu-btn"
             variant="ghost"
             size="sm"
             onClick={() => setSidebarOpen((prev) => !prev)}
-            title={t('sidebar.toggle_expand', { defaultValue: 'Open navigation' })}
-            aria-label={t('sidebar.toggle_expand', { defaultValue: 'Open navigation' })}
+            title={mobileSidebarToggleLabel}
+            aria-label={mobileSidebarToggleLabel}
           >
-            {headerIcons.menu}
+            {sidebarOpen ? headerIcons.close : headerIcons.menu}
           </Button>
+        </div>
+
+        <div className="header-actions floating-actions">
           <Button
             variant="ghost"
             size="sm"
