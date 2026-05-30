@@ -329,7 +329,10 @@ export function VisualConfigEditor({
   const hasValidationIssues =
     sections.some((section) => section.errorCount > 0) || hasPayloadValidationErrors;
   const focusSections = useMemo(
-    () => sections.filter((section) => ['server', 'network', 'payload'].includes(section.id)),
+    () =>
+      sections.filter((section) =>
+        ['server', 'tls', 'remote', 'auth', 'system', 'network'].includes(section.id)
+      ),
     [sections]
   );
 
