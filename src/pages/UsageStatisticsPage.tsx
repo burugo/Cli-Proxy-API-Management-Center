@@ -37,7 +37,6 @@ export function UsageStatisticsPage() {
           src={safeUsageStatisticsUrl}
           title={t('usage_statistics.title')}
           loading="lazy"
-          sandbox="allow-scripts allow-same-origin"
         />
       </div>
     </div>
