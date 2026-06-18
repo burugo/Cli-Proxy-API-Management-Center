@@ -34,6 +34,14 @@
 - 保留模型映射配置与强制映射开关。
 - 保留 Ampcode Management API client 与相关类型定义。
 
+### 使用统计 iframe
+
+新增基于 **iframe** 实现的 **使用统计** 模块：
+
+- 配置 `usage-statistics-url` 后，侧边栏会显示使用统计入口。
+- iframe 地址应填写 https://github.com/Willxup/cpa-usage-keeper 这个项目部署后的访问地址。
+- 可在可视化配置面板的远程管理中填写该部署地址，也可直接在 `config.yaml` 中配置 `usage-statistics-url`。
+
 ## 上游参考
 
 通用使用方式、开发命令、配置与未改动功能说明，请参考上游项目文档：

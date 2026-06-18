@@ -34,6 +34,14 @@ Keeps the **Ampcode** provider module that was removed from `router-for-me/main`
 - Keeps model mapping configuration and force mapping switch.
 - Keeps Ampcode Management API client and related types.
 
+### Usage statistics iframe
+
+Adds a **Usage Statistics** module implemented with an iframe:
+
+- The navigation item appears when `usage-statistics-url` is configured.
+- The iframe URL should be the deployed address of https://github.com/Willxup/cpa-usage-keeper.
+- Configure that deployed address in the visual config panel under Remote Management, or directly in `config.yaml` as `usage-statistics-url`.
+
 ## Upstream reference
 
 For general usage, development commands, configuration, and feature documentation that are unchanged from upstream, refer to the upstream project documentation:
