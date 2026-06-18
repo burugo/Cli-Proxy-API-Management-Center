@@ -805,8 +805,6 @@ function getNextDirtyFields(
       areStringArraysEqual(nextValues.pluginStoreSources, baselineValues.pluginStoreSources)
     );
   }
-    );
-  }
 
   if (Object.prototype.hasOwnProperty.call(patch, 'payloadDefaultRules')) {
     updateDirty(
